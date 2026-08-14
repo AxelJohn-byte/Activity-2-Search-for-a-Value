@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Activity 2 - Search for a Value</title>
+</head>
+<body>
+
+    <h2>Activity 2: Search for a Value</h2>
+
+    <label for="numberInput">Enter a number to add to the array:</label><br>
+    <input type="number" id="numberInput">
+    <button onclick="addNumber()">Add Number</button>
+
+    <p><strong>Current Array:</strong> [<span id="arrayDisplay"></span>]</p>
+
+    <hr>
+
+    <label for="searchInput">Enter a number to search:</label><br>
+    <input type="number" id="searchInput">
+    <button onclick="searchNumber()">Search</button>
+
+    <p id="result"></p>
+
+    <script>
+        // Array to store the numbers
+        let numbers = [];
+
+        // Function to add a number manually
+        function addNumber() {
+            let input = document.getElementById("numberInput").value;
+            
+            if (input === "") {
+                alert("Please enter a number.");
+                return;
+            }
+
+            // Convert string input to number
+            let num = Number(input);
+
+            // Add element to array manually using the array's length
+            numbers[numbers.length] = num;
+
+            // Clear input box
+            document.getElementById("numberInput").value = "";
+
+            // Display current array manually
+            let displayString = "";
+            for (let i = 0; i < numbers.length; i++) {
+                if (i === 0) {
+                    displayString = numbers[i];
+                } else {
+                    displayString = displayString + ", " + numbers[i];
+                }
+            }
+            document.getElementById("arrayDisplay").textContent = displayString;
+        }
+
+        // Function to search for a value manually
+        function searchNumber() {
+            let searchInput = document.getElementById("searchInput").value;
+            let resultText = document.getElementById("result");
+
+            if (numbers.length === 0) {
+                resultText.textContent = "The array is empty. Please add numbers first.";
+                return;
+            }
+
+            if (searchInput === "") {
+                resultText.textContent = "Please enter a number to search.";
+                return;
+            }
+
+            let target = Number(searchInput);
+            let found = false;
+
+            // Manual search loop
+            for (let i = 0; i < numbers.length; i++) {
+                if (numbers[i] === target) {
+                    resultText.textContent = "Value " + target + " found at index " + i + ".";
+                    found = true;
+                    break;
+                }
+            }
+
+            // If not found after checking every element
+            if (found === false) {
+                resultText.textContent = "Value " + target + " does not exist in the array.";
+            }
+        }
+    </script>
+
+</body>
+</html
